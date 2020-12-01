@@ -5,6 +5,7 @@ import 'package:intro_slider/slide_object.dart';
 import 'package:myApp/main.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:intro_slider/intro_slider.dart';
+import "Screens/Welcome/welcome_screen.dart";
 
 class IntroScreenState extends State<IntroScreen> {
   List<Slide> slides = new List();
@@ -24,7 +25,7 @@ class IntroScreenState extends State<IntroScreen> {
             fontWeight: FontWeight.bold,
             fontFamily: 'Roboto'),
         description:
-            "Ký ngay trên thiết bị di động, không cần USB Token. Giúp bạn làm việc từ xa",
+            "Ký ngay trên thiết bị di động, không cần\nUSB Token. Giúp bạn làm việc từ xa",
         styleDescription: TextStyle(
             color: Color.fromRGBO(107, 119, 140, 1),
             fontSize: 16.0,
@@ -42,7 +43,7 @@ class IntroScreenState extends State<IntroScreen> {
             fontWeight: FontWeight.bold,
             fontFamily: 'Roboto'),
         description:
-            "Áp dụng mức độ tin cậy SCAL2, mức cao nhất theo tiêu chuẩn eIDAS",
+            "Áp dụng mức độ tin cậy SCAL2, mức cao nhất\ntheo tiêu chuẩn eIDAS",
         styleDescription: TextStyle(
             color: Color.fromRGBO(107, 119, 140, 1),
             fontSize: 16.0,
@@ -60,7 +61,7 @@ class IntroScreenState extends State<IntroScreen> {
             fontWeight: FontWeight.bold,
             fontFamily: 'Roboto'),
         description:
-            "Đội ngũ hỗ trợ dày dặn kinh nghiệm, liên tục hỗ trợ trên nhiều nền tảng",
+            "Đội ngũ hỗ trợ dày dặn kinh nghiệm, liên tục\nhỗ trợ trên nhiều nền tảng",
         styleDescription: TextStyle(
             color: Color.fromRGBO(107, 119, 140, 1),
             fontSize: 16.0,
@@ -73,34 +74,55 @@ class IntroScreenState extends State<IntroScreen> {
 
   void onDonePress() {
     // Back to the first tab
-    this.goToTab(0);
   }
 
   void onTabChangeCompleted(index) {
     // Index of current tab is focused
   }
 
+  // Widget renderNextBtn() {
+  //   return FlatButton(
+  //     child: Text('Tiếp tục'),
+  //     textColor: Color.fromRGBO(26, 65, 171, 1),
+  //     onPressed: () {},
+  //   );
+  // }
+
+  // Widget renderDoneBtn() {
+  //   return FlatButton(
+  //     child: Text('Bắt đầu'),
+  //     textColor: Color.fromRGBO(26, 65, 171, 1),
+  //     onPressed: () {},
+  //   );
+  // }
+
+  // Widget renderSkipBtn() {
+  //   return FlatButton(
+  //     child: Text('Bỏ qua'),
+  //     textColor: Color.fromRGBO(223, 231, 242, 1),
+  //     onPressed: () {},
+  //   );
+  // }
+
   Widget renderNextBtn() {
-    return FlatButton(
-      child: Text('Tiếp tục'),
-      textColor: Color.fromRGBO(26, 65, 171, 1),
-      onPressed: () {},
+    return Icon(
+      Icons.navigate_next,
+      color: Color.fromRGBO(26, 65, 171, 1),
+      size: 30.0,
     );
   }
 
   Widget renderDoneBtn() {
-    return FlatButton(
-      child: Text('Bắt đầu'),
-      textColor: Color.fromRGBO(26, 65, 171, 1),
-      onPressed: () {},
+    return Icon(
+      Icons.done,
+      color: Color.fromRGBO(26, 65, 171, 1),
     );
   }
 
   Widget renderSkipBtn() {
-    return FlatButton(
-      child: Text('Bỏ qua'),
-      textColor: Color.fromRGBO(223, 231, 242, 1),
-      onPressed: () {},
+    return Icon(
+      Icons.skip_next,
+      color: Color.fromRGBO(26, 65, 171, 1),
     );
   }
 
@@ -112,13 +134,13 @@ class IntroScreenState extends State<IntroScreen> {
         width: double.infinity,
         height: double.infinity,
         child: Container(
+          padding: EdgeInsets.only(bottom: 60),
           child: ListView(
             children: <Widget>[
               GestureDetector(
                   child: Image.asset(
                 currentSlide.pathImage,
-                fit: BoxFit.fitWidth,
-                width: 1000.0,
+                fit: BoxFit.cover,
               )),
               Container(
                 child: Text(
@@ -126,7 +148,7 @@ class IntroScreenState extends State<IntroScreen> {
                   style: currentSlide.styleTitle,
                   textAlign: TextAlign.center,
                 ),
-                // margin: EdgeInsets.only(top: 5.0),
+                margin: EdgeInsets.only(top: 40.0),
               ),
               Container(
                 child: SafeArea(
@@ -156,8 +178,8 @@ class IntroScreenState extends State<IntroScreen> {
 
       // Skip button
       renderSkipBtn: this.renderSkipBtn(),
-      colorSkipBtn: Colors.transparent,
-      highlightColorSkipBtn: Color(0xff000000),
+      colorSkipBtn: Color.fromRGBO(235, 239, 252, 1),
+      highlightColorSkipBtn: Color.fromRGBO(216, 222, 242, 1),
 
       // Next button
       renderNextBtn: this.renderNextBtn(),
@@ -165,8 +187,8 @@ class IntroScreenState extends State<IntroScreen> {
       // Done button
       renderDoneBtn: this.renderDoneBtn(),
       onDonePress: this.onDonePress,
-      colorDoneBtn: Colors.transparent,
-      highlightColorDoneBtn: Color(0xff000000),
+      colorDoneBtn: Color.fromRGBO(235, 239, 252, 1),
+      highlightColorDoneBtn: Color.fromRGBO(216, 222, 242, 1),
 
       // Dot indicator
       colorDot: Color.fromRGBO(26, 65, 171, 1),
