@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'MyApp.dart';
+import 'package:myApp/constants.dart';
+import 'introSlide.dart';
+import 'Screens/Welcome/welcome_screen.dart';
+import 'constants.dart';
 
 void main() => runApp(new MyApp());
 
@@ -7,7 +10,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: IntroScreen(),
+      title: 'Mobile Sign',
+      theme: ThemeData(
+        primaryColor: kPrimaryColor,
+        scaffoldBackgroundColor: Colors.white,
+      ),
+      home: WelcomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
