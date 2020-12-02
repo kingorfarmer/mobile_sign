@@ -1,4 +1,3 @@
 Mobile Sign
 
-30/11/2020
-- Up source code lên github
+1. Splash Screen, Slide onboarding va Welcome Screen
