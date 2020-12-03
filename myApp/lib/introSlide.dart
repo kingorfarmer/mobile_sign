@@ -5,12 +5,12 @@ import 'package:intro_slider/slide_object.dart';
 import 'package:myApp/main.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:intro_slider/intro_slider.dart';
-import "Screens/Welcome/welcome_screen.dart";
+import 'Screens/Welcome/welcome_screen.dart';
 
 class IntroScreenState extends State<IntroScreen> {
   List<Slide> slides = new List();
 
-  Function goToTab;
+  // Function goToScreen;
 
   @override
   void initState() {
@@ -23,17 +23,19 @@ class IntroScreenState extends State<IntroScreen> {
             color: Color.fromRGBO(9, 30, 66, 1),
             fontSize: 24.0,
             fontWeight: FontWeight.bold,
-            fontFamily: 'Roboto'),
+            fontFamily: 'Gilroy'),
         description:
             "Ký ngay trên thiết bị di động, không cần\nUSB Token. Giúp bạn làm việc từ xa",
         styleDescription: TextStyle(
+            height: 1.4,
             color: Color.fromRGBO(107, 119, 140, 1),
             fontSize: 16.0,
-            fontStyle: FontStyle.normal,
-            fontFamily: 'Roboto'),
+            // fontStyle: FontStyle.normal,
+            fontFamily: 'Gilroy'),
         pathImage: "assets/images/welcome1.png",
       ),
     );
+
     slides.add(
       new Slide(
         title: "Bảo mật tuyệt đối",
@@ -41,17 +43,19 @@ class IntroScreenState extends State<IntroScreen> {
             color: Color.fromRGBO(9, 30, 66, 1),
             fontSize: 24.0,
             fontWeight: FontWeight.bold,
-            fontFamily: 'Roboto'),
+            fontFamily: 'Gilroy'),
         description:
             "Áp dụng mức độ tin cậy SCAL2, mức cao nhất\ntheo tiêu chuẩn eIDAS",
         styleDescription: TextStyle(
+            height: 1.4,
             color: Color.fromRGBO(107, 119, 140, 1),
             fontSize: 16.0,
-            fontStyle: FontStyle.normal,
-            fontFamily: 'Roboto'),
+            // fontStyle: FontStyle.normal,
+            fontFamily: 'Gilroy'),
         pathImage: "assets/images/welcome2.png",
       ),
     );
+
     slides.add(
       new Slide(
         title: "Hỗ trợ đa kênh",
@@ -59,21 +63,24 @@ class IntroScreenState extends State<IntroScreen> {
             color: Color.fromRGBO(9, 30, 66, 1),
             fontSize: 24.0,
             fontWeight: FontWeight.bold,
-            fontFamily: 'Roboto'),
+            fontFamily: 'Gilroy'),
         description:
             "Đội ngũ hỗ trợ dày dặn kinh nghiệm, liên tục\nhỗ trợ trên nhiều nền tảng",
         styleDescription: TextStyle(
+            height: 1.4,
             color: Color.fromRGBO(107, 119, 140, 1),
             fontSize: 16.0,
-            fontStyle: FontStyle.normal,
-            fontFamily: 'Roboto'),
+            // fontStyle: FontStyle.normal,
+            fontFamily: 'Gilroy'),
         pathImage: "assets/images/welcome3.png",
       ),
     );
   }
 
   void onDonePress() {
-    // Back to the first tab
+    // To the Welcome Screen
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => WelcomeScreen()));
   }
 
   void onTabChangeCompleted(index) {
@@ -134,7 +141,6 @@ class IntroScreenState extends State<IntroScreen> {
         width: double.infinity,
         height: double.infinity,
         child: Container(
-          padding: EdgeInsets.only(bottom: 60),
           child: ListView(
             children: <Widget>[
               GestureDetector(
@@ -198,12 +204,9 @@ class IntroScreenState extends State<IntroScreen> {
       // Tabs
       listCustomTabs: this.renderListCustomTabs(),
       backgroundColorAllSlides: Color.fromRGBO(248, 252, 255, 1),
-      refFuncGoToTab: (refFunc) {
-        this.goToTab = refFunc;
-      },
 
       // Show or hide status bar
-      shouldHideStatusBar: false,
+      shouldHideStatusBar: true,
 
       // On tab change completed
       onTabChangeCompleted: this.onTabChangeCompleted,

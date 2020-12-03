@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   flutter_native_splash: ^0.1.9
   intro_slider: ^2.3.3
+  # flutter_svg: ^0.17.4
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +49,7 @@ flutter:
   
   assets:
     - assets/images/
+  # - assets/svg/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -65,12 +67,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+    - family: Gilroy
+      fonts:
+        - asset: assets/fonts/Gilroy/Gilroy-Regular1.otf
+        - asset: assets/fonts/Gilroy/Gilroy-Bold1.otf
+          weight: 700
+        
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
