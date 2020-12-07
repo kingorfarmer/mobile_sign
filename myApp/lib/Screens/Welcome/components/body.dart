@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myApp/Screens/SignIn/components/connect_device_body.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -47,7 +48,13 @@ class Body extends StatelessWidget {
                   width: double.infinity,
                   height: 44,
                   child: new FlatButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ConnectDeviceBody()),
+                      );
+                    },
                     child: Text(
                       'Đăng nhập'.toUpperCase(),
                       style: TextStyle(

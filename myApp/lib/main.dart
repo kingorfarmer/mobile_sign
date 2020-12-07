@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myApp/constants.dart';
-import 'Screens/Welcome/welcome_screen.dart';
 import 'introSlide.dart';
 import 'constants.dart';
 
