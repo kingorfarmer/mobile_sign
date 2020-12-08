@@ -65,9 +65,9 @@ class ConnectDeviceBody extends StatefulWidget {
 class _FormConnectState extends State<ConnectDeviceBody>
     with WidgetsBindingObserver {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  final _contentController = TextEditingController();
+  final _connectController = TextEditingController();
   //define states
-  String _content;
+  String _connect;
   @override
   void initState() {
     super.initState();
@@ -89,10 +89,9 @@ class _FormConnectState extends State<ConnectDeviceBody>
           body: SafeArea(
               minimum: const EdgeInsets.only(top: 40, left: 16, right: 16),
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Positioned(
+                  Container(
                     child: AppBar(
                       elevation: 0,
                       backgroundColor: Colors.transparent,
@@ -108,7 +107,7 @@ class _FormConnectState extends State<ConnectDeviceBody>
                       actions: <Widget>[
                         Container(
                             margin: const EdgeInsets.only(top: 22, bottom: 16),
-                            padding: const EdgeInsets.only(top: 3, right: 2),
+                            padding: const EdgeInsets.only(top: 3.4, right: 2),
                             decoration: BoxDecoration(
                               border: Border.all(
                                   width: 1,
@@ -128,32 +127,57 @@ class _FormConnectState extends State<ConnectDeviceBody>
                       ],
                     ),
                   ),
+                  SizedBox(height: 38),
                   Text(
                     'Kết nối thiết bị',
-                    style: TextStyle(),
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Gilroy'),
                   ),
+                  SizedBox(height: 16),
                   Text(
-                      'Chúng tôi đã gửi mã kết nối đến địa chỉ Email của bạn. Vui lòng kiểm tra và kết nối'),
+                    'Chúng tôi đã gửi mã kết nối đến địa chỉ Email của bạn. Vui lòng kiểm tra và kết nối',
+                    style: TextStyle(
+                        fontSize: 16, fontFamily: 'Gilroy', height: 1.4),
+                  ),
+                  SizedBox(height: 16),
                   TextField(
-                    decoration: InputDecoration(labelText: 'Nhập mã kết nối'),
-                    controller: _contentController,
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(17, 57, 125, 1))),
+                      labelText: 'Nhập mã kết nối',
+                      labelStyle: TextStyle(
+                          fontFamily: 'Gilroy',
+                          color: Color.fromRGBO(193, 199, 208, 1)),
+                    ),
+                    controller: _connectController,
                     onChanged: (text) {
                       setState(() {
-                        _content = text;
+                        _connect = text;
                       });
                     },
                   ),
                   SizedBox(
-                    height: 24,
+                    height: 64,
                   ),
                   SizedBox(
                     width: double.infinity,
                     height: 44,
                     child: new FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => ConnectDeviceBody()),
+                        // );
+                      },
                       child: Text(
                         'Kết nối'.toUpperCase(),
                         style: TextStyle(
+                          fontFamily: 'Gilroy',
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                         ),
