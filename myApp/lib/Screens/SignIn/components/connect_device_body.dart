@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'digital_certificate_validate.dart';
+import 'transition_screen.dart';
 
 // class ConnectDeviceBody extends StatelessWidget {
 //   @override
@@ -56,34 +59,40 @@ import 'package:percent_indicator/percent_indicator.dart';
 class ConnectDeviceBody extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _FormConnectState();
   }
 }
 
-//This is a "very basic" statefulwidget
 class _FormConnectState extends State<ConnectDeviceBody>
     with WidgetsBindingObserver {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  final _connectController = TextEditingController();
-  //define states
-  String _connect;
+  static final GlobalKey<ScaffoldState> _scaffoldKey =
+      new GlobalKey<ScaffoldState>();
+  // final _connectController = TextEditingController();
+  TextEditingController textFieldCtrl;
+  // FocusNode focusNode;
+  bool _connectValidate = false;
+
+  // String _connect;
   @override
   void initState() {
+    textFieldCtrl = TextEditingController();
+    // focusNode = FocusNode()..addListener(_rebuildOnFocusChange);
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    WidgetsBinding.instance.removeObserver(this);
-  }
+  // void _rebuildOnFocusChange() => setState(() {});
+
+  // void _onButtonPressed() {}
+
+  // void dispose() {
+  //   _connectController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "This is a StatefulWidget",
+      title: "Connect Device",
       home: Scaffold(
           key: _scaffoldKey,
           body: SafeArea(
@@ -143,22 +152,26 @@ class _FormConnectState extends State<ConnectDeviceBody>
                   ),
                   SizedBox(height: 16),
                   TextField(
+                    maxLength: 6,
                     autofocus: true,
                     decoration: InputDecoration(
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                               color: Color.fromRGBO(17, 57, 125, 1))),
                       labelText: 'Nhập mã kết nối',
+                      errorText:
+                          _connectValidate ? 'Mã kết nối chưa đúng' : null,
                       labelStyle: TextStyle(
                           fontFamily: 'Gilroy',
                           color: Color.fromRGBO(193, 199, 208, 1)),
                     ),
-                    controller: _connectController,
-                    onChanged: (text) {
-                      setState(() {
-                        _connect = text;
-                      });
-                    },
+                    controller: textFieldCtrl,
+                    // focusNode: focusNode,
+                    // onChanged: (text) {
+                    //   setState(() {
+                    //     _connect = text;
+                    //   });
+                    // },
                   ),
                   SizedBox(
                     height: 64,
@@ -168,11 +181,19 @@ class _FormConnectState extends State<ConnectDeviceBody>
                     height: 44,
                     child: new FlatButton(
                       onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => ConnectDeviceBody()),
-                        // );
+                        Navigator.of(context, rootNavigator: true).push(
+                          new CupertinoPageRoute<bool>(
+                            fullscreenDialog: true,
+                            builder: (BuildContext context) =>
+                                new DigitalCertificate(),
+                          ),
+                        );
+                        setState(() {
+                          textFieldCtrl.text.isEmpty ||
+                                  textFieldCtrl.text.length < 6
+                              ? _connectValidate = true
+                              : _connectValidate = false;
+                        });
                       },
                       child: Text(
                         'Kết nối'.toUpperCase(),
