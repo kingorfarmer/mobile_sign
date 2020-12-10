@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'digital_certificate_validate.dart';
-import 'transition_screen.dart';
 
 // class ConnectDeviceBody extends StatelessWidget {
 //   @override
@@ -140,15 +139,20 @@ class _FormConnectState extends State<ConnectDeviceBody>
                   Text(
                     'Kết nối thiết bị',
                     style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Gilroy'),
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Gilroy',
+                      color: Color.fromRGBO(9, 30, 66, 1),
+                    ),
                   ),
                   SizedBox(height: 16),
                   Text(
                     'Chúng tôi đã gửi mã kết nối đến địa chỉ Email của bạn. Vui lòng kiểm tra và kết nối',
                     style: TextStyle(
-                        fontSize: 16, fontFamily: 'Gilroy', height: 1.4),
+                        fontSize: 16,
+                        fontFamily: 'Gilroy',
+                        height: 1.4,
+                        color: Color.fromRGBO(80, 95, 121, 1)),
                   ),
                   SizedBox(height: 16),
                   TextField(
@@ -181,18 +185,15 @@ class _FormConnectState extends State<ConnectDeviceBody>
                     height: 44,
                     child: new FlatButton(
                       onPressed: () {
-                        Navigator.of(context, rootNavigator: true).push(
-                          new CupertinoPageRoute<bool>(
-                            fullscreenDialog: true,
-                            builder: (BuildContext context) =>
-                                new DigitalCertificate(),
-                          ),
-                        );
                         setState(() {
                           textFieldCtrl.text.isEmpty ||
                                   textFieldCtrl.text.length < 6
                               ? _connectValidate = true
-                              : _connectValidate = false;
+                              : Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          DigitalCertificate()));
                         });
                       },
                       child: Text(
